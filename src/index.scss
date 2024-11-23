@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'NotoSans-Regular';
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url(/assets/fonts/NotoSans-Regular.ttf) format('truetype');
+	}
+
+	html {
+		font-family: "NotoSans-Regular", sans-serif;
+	}
+
+	body {
+		@apply text-black bg-slate-100;
+	}
+
+	input {
+		outline: none;
+	}
+}
+
+@layer components {
+	.btn {
+		@apply h-12 rounded font-bold border w-72 flex justify-center items-center transition-all border-none;
+	}
+
+	.primary {
+		@apply bg-gradient-to-b from-amber-400 to-orange-600 text-white disabled:bg-gray-300;
+	}
+
+	.secondary {
+		@apply bg-amber-500 border-amber-500 hover:bg-amber-600 hover:border-amber-600 transition;
+	}
+
+	.white {
+		@apply bg-white border-[#CDD0D9] hover:border-black transition;
+	}
+
+	.black {
+		@apply bg-black border-black text-white hover:border-black transition;
+	}
+
+	.success {
+		@apply bg-green-500 text-white hover:bg-green-600 transition;
+	}
+
+	.small {
+		@apply w-20;
+	}
+}

@@ -1,0 +1,16 @@
+.paginate {
+	@apply mt-10 flex h-8 md:h-10 gap-x-1.5 md:gap-x-2.5 font-medium rounded-full;
+
+	li {
+		@apply w-8 md:w-10 transition duration-150 ease-in rounded-sm bg-white border border-[#C1C4CC];
+
+		a {
+			@apply block h-full w-full text-center leading-8 md:leading-10;
+		}
+
+		&:hover,
+		&.selected {
+			@apply bg-blue-500 text-white border-blue-500;
+		}
+	}
+}

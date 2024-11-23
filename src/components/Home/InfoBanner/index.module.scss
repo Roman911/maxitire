@@ -1,0 +1,5 @@
+.info-banner {
+	background: url("../../../assets/home-info-banner.png") center center no-repeat;
+	background-size: cover;
+	@apply mt-16 py-10 md:py-20 px-8 md:px-24;
+}
