@@ -4,7 +4,6 @@ import { twMerge } from 'tailwind-merge';
 import styles from '../HeaderCenter/index.module.scss';
 import { useAppSelector } from '../../../../hooks';
 import { Link } from '../../../../lib';
-import { SearchIcon } from '../../../Lib/Icons';
 import { Language } from '../../../../models/language';
 import type { Data } from '../../../../models/products';
 import { CloseButton, Spinner } from "../../../Lib";
@@ -32,7 +31,7 @@ export const SearchComponent: FC<SearchProps> = ({ data, placeholder, isOpen, va
 				placeholder={placeholder}
 			/>
 			<button type="submit" className="btn primary w-16 h-12 -my-px -mr-px">
-				<SearchIcon className='fill-white'/>
+				<i className='icon iconfont-search'></i>
 			</button>
 		</div>
 		<div className={twMerge('absolute top-12 right-0 z-20 py-6 px-8 md:px-10 bg-zinc-700 text-white rounded-lg w-full lg:max-w-[460px]', !isOpen && 'hidden')}>

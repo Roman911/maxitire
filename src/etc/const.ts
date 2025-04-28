@@ -9,7 +9,6 @@ export const ROUTES = {
 	catalog: 'ru?/catalog/:section/*',
 	product: 'ru?/*',
 	bookmarks: 'ru?/bookmarks/',
-	comparison: 'ru?/comparison/',
 	cart: 'ru?/cart/',
 	order: 'ru?/order/',
 	successful: 'ru?/order/successful/*',

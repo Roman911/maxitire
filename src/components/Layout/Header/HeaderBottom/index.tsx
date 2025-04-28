@@ -6,7 +6,6 @@ import { resetFilter } from '../../../../store/reducers/filterSlice';
 import { Link } from '../../../../lib';
 import { CarDiskFilter } from './CarDiskFilter';
 import { CarTireFilter } from './CarTireFilter';
-import { ChevronDownIcon } from '../../../Lib/Icons';
 import { links } from '../links';
 
 export const HeaderBottom = () => {
@@ -36,18 +35,18 @@ export const HeaderBottom = () => {
 			<button onClick={event => handleClick(event, 'tires')} type="button"
 							className={twMerge('inline-flex items-center gap-x-1.5 group transition py-3 px-8', (open && section === 'tires') && 'bg-blue-600')}>
 				<span>{ t('cartires', true) }</span>
-				<span className={twMerge('transition', (open && section === 'tires') && 'rotate-180')}>
-					<ChevronDownIcon className='stroke-black transition' />
+				<span className={twMerge('transition text-black', (open && section === 'tires') && 'rotate-180')}>
+					<i className='icon iconfont-chevron-down'></i>
 				</span>
 			</button>
 			<button onClick={event => handleClick(event, 'disks')} type="button"
 							className={twMerge('inline-flex items-center gap-x-1.5 group transition py-3 px-8', (open && section === 'disks') && 'bg-blue-600')}>
 				<span>Автодиски</span>
-				<span className={twMerge('transition', (open && section === 'disks') && 'rotate-180')}>
-					<ChevronDownIcon className='stroke-black transition' />
+				<span className={ twMerge('transition text-black', (open && section === 'disks') && 'rotate-180') }>
+					<i className='icon iconfont-chevron-down'></i>
 				</span>
 			</button>
-			{links.map((item, index) => {
+			{ links.map((item, index) => {
 				return <Link key={ index } onClick={ () => dispatch(resetFilter()) } className='py-3 px-8' to={ item.url }>
 					{ t(item.title, true) }
 				</Link>

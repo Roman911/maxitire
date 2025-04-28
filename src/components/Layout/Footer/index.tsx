@@ -5,17 +5,14 @@ import { config } from '../../../config';
 import { baseDataAPI } from '../../../services/baseDataService';
 import { Link } from '../../../lib';
 import { useAppSelector, useAppTranslation } from '../../../hooks';
-import { EmailIcon, FacebookIcon, TelegramIcon, ViberIcon } from '../../Lib/Icons';
 import { linksCatalog } from './linksCatalog';
-import styles from './index.module.scss';
 
-import kievstarLogo from '../../../assets/kievstar-logo.png';
-import vodafoneLogo from '../../../assets/vodafone-logo.png';
+import kievstarLogo from '../../../assets/kievstar-logo.webp';
+import vodafoneLogo from '../../../assets/vodafone-logo.webp';
 
 import { PhoneLogo } from '../../../models/config';
 import { Language} from "../../../containers/Layout/Header/Language";
 import logo from '../../../assets/logo-footer.svg';
-type IconType = 'telegram' | 'facebook' | 'viber';
 
 const phoneLogos: Record<PhoneLogo, string> = {
 	vodafone: vodafoneLogo,
@@ -27,12 +24,6 @@ export const Footer = () => {
 	const { settings } = useAppSelector(state => state.settingsReducer);
 	const { data } = baseDataAPI.useFetchStatiAliasAllQuery('');
 	const t = useAppTranslation();
-
-	const icons: Record<IconType, JSX.Element> = {
-		telegram: <TelegramIcon className='fill-black group-hover:fill-white' />,
-		facebook: <FacebookIcon className='fill-black group-hover:fill-white' />,
-		viber: <ViberIcon className='fill-black group-hover:fill-white' />,
-	};
 
 	const link = (link: string, title: string, index: number) => {
 		return <Link key={ index } className='text-white block text-sm font-medium mt-4 transition hover:text-[#0091E5]' to={ link } >
@@ -55,7 +46,7 @@ export const Footer = () => {
 		);
 	});
 
-	return <footer className={styles['footer']}>
+	return <footer className='bg-tires'>
 		<div className='bg-black/75'>
 			<div className='container mx-auto py-16 px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
 				<div>
@@ -68,9 +59,9 @@ export const Footer = () => {
 								key={index}
 								target='_blank'
 								href={item.link}
-								className='w-9 h-9 rounded-full cursor-pointer bg-white flex items-center justify-center transition group hover:bg-blue-500'
+								className='w-9 h-9 rounded-full bg-white cursor-pointer text-black flex items-center justify-center transition group hover:bg-blue-500'
 							>
-								{icons[item.logo as IconType]}
+								<i className={ `icon iconfont-${ item.logo }` }></i>
 							</a>
 						})}
 					</div>
@@ -91,9 +82,9 @@ export const Footer = () => {
 							</div>
 						}
 					})}
-					<div className='flex items-center mt-5'>
-						<EmailIcon className='fill-white'/>
-						<a href={`mailto:${settings[lang].config_email}`} className='ml-2.5 text-sm text-white'>
+					<div className='flex items-center mt-5 text-white'>
+						<i className='icon iconfont-email'></i>
+						<a href={`mailto:${settings[lang].config_email}`} className='ml-2.5 text-sm'>
 							{settings[lang].config_email}
 						</a>
 					</div>

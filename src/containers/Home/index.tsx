@@ -8,9 +8,8 @@ import { reset as resetFilterCar } from '../../store/reducers/filterCarSlice';
 import { LayoutWrapper } from '../../components/Layout';
 import { Filter } from './Filter';
 import { ProductList } from '../ProductList';
-import { Support } from '../Layout/Support';
-import { InfoBanner, ShowAll, TextSeo, TopBrands } from '../../components/Home';
-import { AdditionalFilter } from './AdditionalFilter';
+import { Support } from './Support';
+import { ShowAll } from '../../components/Home';
 import { NoResult, Spinner, Title } from '../../components/Lib';
 import { Language } from '../../models/language';
 
@@ -41,11 +40,7 @@ export const Home = () => {
 				/>}
 			</Spinner>
 			<ShowAll />
-			<InfoBanner lang={ lang } />
-			<AdditionalFilter />
-			<Support />
-			<TopBrands />
-			<TextSeo />
 		</LayoutWrapper>
+		<Support />
 	</main>
 };

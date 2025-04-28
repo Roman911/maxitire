@@ -37,7 +37,7 @@ const colourStyles: StylesConfig<Options | undefined, IsMulti> = {
 		fontSize: 16,
 		fontWeight: 500,
 	}),
-	placeholder: (styles, { isDisabled}) => ({
+	placeholder: (styles, { isDisabled }) => ({
 		...styles,
 		fontSize: 16,
 		fontWeight: 500,
@@ -47,7 +47,7 @@ const colourStyles: StylesConfig<Options | undefined, IsMulti> = {
 		...styles,
 		display: 'none'
 	}),
-	dropdownIndicator: (styles, { isDisabled}) => ({
+	dropdownIndicator: (styles, { isDisabled }) => ({
 		...styles,
 		color: isDisabled ? 'rgba(112,118,128,0.25)' : '#707680',
 		':hover': {
@@ -78,7 +78,15 @@ const colourStyles: StylesConfig<Options | undefined, IsMulti> = {
 	},
 };
 
-export const MySelect: FC<SelectProps> = ({ name, label, options = [], isDisabled = false, onChange, defaultValue }) => {
+export const MySelect: FC<SelectProps> = (
+	{
+		name,
+		label,
+		options = [],
+		isDisabled = false,
+		onChange,
+		defaultValue
+	}) => {
 	const { lang } = useAppSelector(state => state.langReducer);
 
 	const handleChange = (value: SingleValue<Options | undefined>) => {
@@ -93,6 +101,7 @@ export const MySelect: FC<SelectProps> = ({ name, label, options = [], isDisable
 		isDisabled={ isDisabled }
 		onChange={ handleChange }
 		defaultValue={ defaultValue }
-		noOptionsMessage={ () => lang === Language.UA ? 'Збігів не знайдено' : 'Совпадений не найдено' }
+		noOptionsMessage={
+		() => lang === Language.UA ? 'Збігів не знайдено' : 'Совпадений не найдено' }
 	/>
-}
+};

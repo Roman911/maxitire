@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector, useAppTranslation } from '../../../hooks';
 import { addBrandAlias, addModelAlias, reset } from '../../../store/reducers/brandAliasSlice';
-import { ChevronDownIcon } from '../../Lib/Icons';
 import { TooltipWithIcon } from '../../Lib';
 import { Link, SeasonTransform, VehicleTypeTransform } from '../../../lib';
 import { Comments } from '../Comments';
@@ -64,8 +63,8 @@ export const CharacteristicsBlock: FC<CharacteristicsBlockProps> = ({ data }) =>
 							className='flex items-center w-full justify-between px-3.5 py-2 bg-white border border-[#CDD0D9] rounded-sm font-medium'
 							id='menu-button'>
 				{ t(tab, true) }
-				<div className={ classNames('transition-transform', {'rotate-180': showOptions}) }>
-					<ChevronDownIcon className='stroke-black'/>
+				<div className={ classNames('transition-transform text-black', {'rotate-180': showOptions}) }>
+					<i className="icon iconfont-chevron-down"></i>
 				</div>
 			</button>
 			<div
@@ -203,7 +202,7 @@ export const CharacteristicsBlock: FC<CharacteristicsBlockProps> = ({ data }) =>
 				{<div className='flex md:my-4 text-sm font-medium'>
 					<div
 						className='w-full flex items-center text-[#575C66] after:flex-1 after:min-w-6 after:border-b after:border-dashed after:border-[#AEB6C2] after:h-px after:mt-3 after:mx-2'>
-						{t('all brands', true)}
+						{t('brand', true)}
 					</div>
 					<Link to={link(`/b-${data?.data.brand.id}`)} onClick={() => dispatch(addBrandAlias(data ? data?.data.brand.alias : ''))} className='text-blue-500 max-w-max w-full hover:underline'>
 						{data?.data.brand.name}

@@ -1,7 +1,7 @@
-import monoBank from '../../../assets/mono_bank.png';
-import payLater from '../../../assets/pay_later.png';
-import privateBank from '../../../assets/private_bank.png';
-import senseBank from '../../../assets/sense_bank.png';
+import monoBank from '../../../assets/mono_bank.webp';
+import payLater from '../../../assets/pay_later.webp';
+import privateBank from '../../../assets/private_bank.webp';
+import senseBank from '../../../assets/sense_bank.webp';
 
 export const OnlineInstallment = () => {
 	return <div className='bg-white p-14 divide-y divide-[#D8D8D9]'>

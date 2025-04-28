@@ -12,8 +12,6 @@ export const RecentlyViewed = () => {
 	}, []);
 	const { products, isLoading} = useAppGetProducts(storage, 'recentlyViewed');
 
-	if(storage.length === 0) return null;
-
 	return <>
 		<Title title={ t('recently viewed', true) } />
 		<Spinner height='h-40' show={ isLoading } >

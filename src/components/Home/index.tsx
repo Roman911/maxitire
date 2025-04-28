@@ -1,10 +1,3 @@
-export { AdditionalFilterComponent } from './AdditionalFilter';
-export { CarouselSlider } from './CarouselSlider';
 export { FilterComponent } from './Filter';
-export { InfoBanner } from './InfoBanner';
-export { OurAdvantages } from './OurAdvantages';
-export { PopularBrands } from './PopularBrands';
-export { PopularSizes } from './PopularSizes';
 export { ShowAll } from './ShowAll';
-export { TextSeo } from './TextSeo';
-export { TopBrands } from './TopBrands';
+export { SupportComponent } from './Support';

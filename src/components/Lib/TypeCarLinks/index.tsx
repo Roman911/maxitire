@@ -1,12 +1,10 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 import { Link } from '../../../lib';
 import { useAppDispatch, useAppTranslation } from '../../../hooks';
-import { setParams, resetFilter } from '../../../store/reducers/filterSlice';
-
-import { BusIcon, CargoIcon, CarIcon, MotorcyclesIcon, SpecialEquipmentIcon, SuvIcon } from '../Icons';
+import { resetFilter, setParams } from '../../../store/reducers/filterSlice';
 
 import { typeCatLinks } from './links';
 import type { LinkComponentProps } from '../../../models/linkComponent';
@@ -16,20 +14,9 @@ interface TypeCarLinksProps {
 	onClick?: () => void
 }
 
-const Icons = {
-	light: CarIcon,
-	bus: BusIcon,
-	cargo: CargoIcon,
-	motorcycle: MotorcyclesIcon,
-	special: SpecialEquipmentIcon,
-	suv: SuvIcon,
-};
-
 interface ILinkComponent extends LinkComponentProps {
 	section: 'header' | 'catalog'
-	icon: keyof typeof Icons
-	iconStyles?: string
-	iconStylesActive?: string
+	icon: string
 	vehicleType: string[]
 }
 
@@ -40,36 +27,22 @@ const LinkComponent: FC<ILinkComponent> = (
 		icon,
 		label,
 		onClick,
-		iconStyles,
-		iconStylesActive,
 		vehicleType
 	}) => {
 	const params = useParams();
 	const value = params?.['*'] ? params['*'].split("vt-")[1]?.split("/")[0] || null : null;
 	const active = value && vehicleType.includes(value);
-	const IconComponent = Icons[icon];
 
 	return <Link
-		to={to}
-		onClick={onClick}
-		className={classNames('flex items-center group',
-			{'flex-col': section === 'catalog', 'mt-3 gap-2.5': section === 'header'}
-		)}
+		to={ to }
+		onClick={ onClick }
+		className={
+			twMerge('flex items-center group', section === 'catalog' && 'flex-col', section === 'header' && 'mt-3 gap-2.5')
+		}
 	>
-		<IconComponent className={
-			classNames(
-				'transition  group-hover:fill-blue-500',
-				!active && iconStyles,
-				active && iconStylesActive,
-				{ 'fill-blue-500': active, 'fill-gray-500': !active }
-			)
-		}/>
+		<i className={ `icon iconfont-${ icon }` }></i>
 		<span className={
-			classNames(
-				'transition group-hover:text-blue-500',
-				{ 'text-blue-500': active },
-				{ 'text-sm': section === 'catalog', 'group-hover:underline': section === 'header' }
-			)
+			twMerge('transition group-hover:text-blue-500', active && 'text-blue-500', section === 'catalog' && 'text-sm', section === 'header' && 'group-hover:underline')
 		}>
 			{ label }
 		</span>
@@ -87,18 +60,16 @@ export const TypeCarLinks: FC<TypeCarLinksProps> = ({ onClick, section }) => {
 	}
 
 	return <>
-		{typeCatLinks.map(item => {
+		{ typeCatLinks.map(item => {
 			return <LinkComponent
 				key={ item.label }
 				section={ section }
 				to={ item.to }
-				icon={ item.icon as keyof typeof Icons }
+				icon={ item.icon }
 				label={ t(item.label, true) }
 				onClick={ handleClick }
-				iconStyles={ item.iconStyles }
-				iconStylesActive={ item.iconStylesActive }
 				vehicleType={ item.vehicleType }
 			/>
-		})}
+		}) }
 	</>
 };

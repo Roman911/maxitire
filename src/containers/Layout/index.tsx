@@ -1,12 +1,12 @@
 import { useEffect, useMemo, ReactNode } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { baseDataAPI } from '../../services/baseDataService';
 import { getFromStorage } from '../../lib';
 import { useAppDispatch } from '../../hooks';
 import { setSettings } from '../../store/reducers/settingsSlice';
 import { addBookmarksFromStorage } from '../../store/reducers/bookmarksSlice';
-import { addComparisonFromStorage } from '../../store/reducers/comparisonSlice';
 import { addCartFromStorage } from '../../store/reducers/cartSlice';
 import { Header } from './Header';
 import { Footer } from '../../components/Layout/Footer';
@@ -25,7 +25,6 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
 
 	useEffect(() => {
 		if(bookmarksStorage.length !== 0) dispatch(addBookmarksFromStorage(bookmarksStorage));
-		if(comparisonStorage.length !== 0) dispatch(addComparisonFromStorage(comparisonStorage));
 		if(cartStorage.length !== 0) dispatch(addCartFromStorage(cartStorage));
 	}, [bookmarksStorage, cartStorage, comparisonStorage, dispatch]);
 
@@ -41,5 +40,6 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
 		<Header />
 		{ children || <Outlet /> }
 		<Footer />
+		<ToastContainer />
 	</>
 };

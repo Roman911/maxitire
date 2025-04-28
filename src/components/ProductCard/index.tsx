@@ -3,25 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 import style from './index.module.scss';
-import { addToStorage, getFromStorage, Link } from '../../lib';
+import { addToStorage, getFromStorage, Link, VehicleTypeTransform } from '../../lib';
 import { useAppDispatch, useAppSelector, useAppTranslation } from '../../hooks';
 import { addCart } from '../../store/reducers/cartSlice';
-import { BusIcon, CargoIcon, CarIcon, HeartIcon, MotorcyclesIcon, SuvIcon } from '../Lib/Icons';
 import { Language } from '../../models/language';
 import { CountryInfo } from '../Lib';
 import type { Product } from '../../models/products';
 import { Section } from '../../models/filter';
 
-import noPhoto from '../../assets/no-photo.jpg';
-import noPhotoRu from '../../assets/no-photo-ru.jpg';
+import noPhoto from '../../assets/no-photo.webp';
+import noPhotoRu from '../../assets/no-photo-ru.webp';
 
-const icons = {
-	1: CarIcon,
-	2: SuvIcon,
-	7: MotorcyclesIcon,
-	8: BusIcon,
-	9: CargoIcon,
-};
 const cargo = ['3','4','5','6','9','10','11'];
 
 interface ProductCardProps {
@@ -41,8 +33,7 @@ export const ProductCardComponent: FC<ProductCardProps> = ({ item, isBookmarks, 
 	const sectionNew = section === Section.Tires ? cargo.includes(item.vehicle_type) ? 'cargo' : 'tires' : section;
 
 	const seasonIcon = season === '1' ? 'sun' : season === '2' ? 'snow' : season === '3' ? 'all-season' : undefined;
-	const vehicle_type_number = vehicle_type as unknown as keyof typeof icons;
-	const Icon = icons[vehicle_type_number] || null;
+	const vehicleTransform = vehicle_type ? VehicleTypeTransform(vehicle_type) : undefined;
 
 	const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
@@ -61,17 +52,19 @@ export const ProductCardComponent: FC<ProductCardProps> = ({ item, isBookmarks, 
 
 				</div>
 				<div className='absolute right-0 flex flex-col gap-2'>
-					<button onClick={event => addToDefense(event, group)}>
-						<HeartIcon
-							className={twMerge('stroke-[#8D8E90] hover:stroke-blue-500', isBookmarks && 'stroke-blue-500 fill-blue-500')}/>
+					<button
+						className={ twMerge('hover:text-blue-500', isBookmarks && 'text-blue-500') }
+						onClick={event => addToDefense(event, group)}
+					>
+						{ isBookmarks ? <i className="icon iconfont-heart"></i> : <i className="icon iconfont-heart-o"></i> }
 					</button>
 					{seasonIcon && <img src={`/images/${seasonIcon}-icon.svg`} alt=""/>}
-					{Icon && <Icon className={twMerge('fill-[#575C66]', vehicle_type === '2' && 'stroke-[#575C66]')}/>}
+					{ vehicleTransform && <i className={`icon iconfont-${ vehicleTransform.icon }`}></i> }
 				</div>
 				<img src={default_photo || (lang === Language.UA ? noPhoto : noPhotoRu)} alt={full_name}/>
 			</div>
 			<p className='font-bold my-2.5 min-h-12'>{full_name}</p>
-			<div className='my-3.5'>
+			<div className='my-3.5 h-5'>
 				<CountryInfo
 					country={lang === Language.UA ? best_offer.country : best_offer.country_ru}
 					year={best_offer.year}

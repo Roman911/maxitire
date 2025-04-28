@@ -4,7 +4,7 @@ import { useAppSelector, useAppTranslation } from '../../../hooks';
 import { NpCitySearch, NpDocumentPrice } from '../../../containers/Lib';
 import { Language } from '../../../models/language';
 import { Quantity } from '../../Lib';
-import npLogo from '../../../assets/nova-poshta-logo-white-bg.png';
+import npLogo from '../../../assets/nova-poshta-logo-white-bg.webp';
 
 interface DeliveryCalculationProps {
 	offer_id: number | undefined

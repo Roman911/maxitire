@@ -3,53 +3,87 @@
 @tailwind utilities;
 
 @layer base {
-	@font-face {
-		font-family: 'NotoSans-Regular';
-		font-style: normal;
-		font-weight: 400;
-		font-display: swap;
-		src: url(/assets/fonts/NotoSans-Regular.ttf) format('truetype');
-	}
+  @font-face {
+    font-family: 'NotoSans-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./assets/fonts/NotoSans-Regular.ttf') format('truetype');
+  }
 
-	html {
-		font-family: "NotoSans-Regular", sans-serif;
-	}
+  html {
+    font-family: "NotoSans-Regular", sans-serif;
+  }
 
-	body {
-		@apply text-black bg-slate-100;
-	}
+  body {
+    @apply text-black bg-slate-100;
+  }
 
-	input {
-		outline: none;
-	}
+  input {
+    outline: none;
+  }
 }
 
 @layer components {
-	.btn {
-		@apply h-12 rounded font-bold border w-72 flex justify-center items-center transition-all border-none;
-	}
+  .btn {
+    @apply h-12 rounded font-bold border w-72 flex justify-center items-center transition-all border-none;
+  }
 
-	.primary {
-		@apply bg-gradient-to-b from-amber-400 to-orange-600 text-white disabled:bg-gray-300;
-	}
+  .primary {
+    @apply bg-gradient-to-b from-amber-400 to-orange-600 text-white disabled:bg-gray-300;
+  }
 
-	.secondary {
-		@apply bg-amber-500 border-amber-500 hover:bg-amber-600 hover:border-amber-600 transition;
-	}
+  .secondary {
+    @apply bg-amber-500 border-amber-500 hover:bg-amber-600 hover:border-amber-600 transition;
+  }
 
-	.white {
-		@apply bg-white border-[#CDD0D9] hover:border-black transition;
-	}
+  .white {
+    @apply bg-white border-[#CDD0D9] hover:border-black transition;
+  }
 
-	.black {
-		@apply bg-black border-black text-white hover:border-black transition;
-	}
+  .black {
+    @apply bg-black border-black text-white hover:border-black transition;
+  }
 
-	.success {
-		@apply bg-green-500 text-white hover:bg-green-600 transition;
-	}
+  .success {
+    @apply bg-green-500 text-white hover:bg-green-600 transition;
+  }
 
-	.small {
-		@apply w-20;
-	}
+  .small {
+    @apply w-20;
+  }
+
+  .icon {
+    @apply text-2xl;
+  }
+
+  .bg-tires {
+    background-image: image-set(
+                    url('assets/home-filter/bg-home_mob_3x.avif') 3x type('image/avif'),
+                    url('assets/home-filter/bg-home_mob_2x.avif') 2x type('image/avif'),
+                    url('assets/home-filter/bg-home_mob.avif') 1x type('image/avif'),
+                    url('assets/home-filter/bg-home_mob_3x.webp') 3x type('image/webp'),
+                    url('assets/home-filter/bg-home_mob_2x.webp') 2x type('image/webp'),
+                    url('assets/home-filter/bg-home_mob.webp') 1x type('image/webp'),
+                    url('assets/home-filter/bg-home_mob_3x.jpg') 3x type('image/jpeg'),
+                    url('assets/home-filter/bg-home_mob_2x.jpg') 2x type('image/jpeg'),
+                    url('assets/home-filter/bg-home_mob.jpg') 1x type('image/jpeg')
+    );
+
+    @media screen and (min-width: 768px) {
+      background-image: image-set(
+                      url('assets/home-filter/bg-home_3x.avif') 3x type('image/avif'),
+                      url('assets/home-filter/bg-home_2x.avif') 2x type('image/avif'),
+                      url('assets/home-filter/bg-home.avif') 1x type('image/avif'),
+                      url('assets/home-filter/bg-home_3x.webp') 3x type('image/webp'),
+                      url('assets/home-filter/bg-home_2x.webp') 2x type('image/webp'),
+                      url('assets/home-filter/bg-home.webp') 1x type('image/webp'),
+                      url('assets/home-filter/bg-home_3x.jpg') 3x type('image/jpeg'),
+                      url('assets/home-filter/bg-home_2x.jpg') 2x type('image/jpeg'),
+                      url('assets/home-filter/bg-home.jpg') 1x type('image/jpeg')
+      );
+    }
+
+    @apply bg-center bg-no-repeat bg-cover;
+  }
 }

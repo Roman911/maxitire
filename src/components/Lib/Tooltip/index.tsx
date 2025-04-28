@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import { InfoIcon } from '../Icons';
-
 interface TooltipProps {
 	label: string;
 }
@@ -16,6 +14,6 @@ export const TooltipWithIcon: FC<TooltipProps> = ({ label }) => {
 				</svg>
       </div>
     </div>
-    <InfoIcon className='fill-[#7D92B2] mb-0.5'/>
+		<i className='icon iconfont-info mb-0.5 bg-gradient-to-b from-[#FEBE0F] to-[#F15C23] bg-clip-text text-transparent'></i>
   </span>
 };

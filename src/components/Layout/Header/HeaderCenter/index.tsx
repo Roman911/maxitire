@@ -8,7 +8,6 @@ import { Search } from '../../../../containers/Layout/Header/Search';
 import { Badge } from '../../../Lib';
 
 import logo from '../../../../assets/logo.svg';
-import { CartIcon, ChevronDownIcon, CloseMenuIcon, HeartIcon, MenuIcon } from '../../../Lib/Icons';
 import { CarTireFilter } from "../HeaderBottom/CarTireFilter";
 import { CarDiskFilter } from "../HeaderBottom/CarDiskFilter";
 import { links } from '../links';
@@ -56,14 +55,14 @@ export const HeaderCenter = () => {
 			<div className={classNames('flex gap-4 md:gap-7 justify-end', styles.menu)}>
 				<Link to='/bookmarks' className='relative'>
 					<Badge value={bookmarksItems.length}/>
-					<HeartIcon/>
+					<i className='icon iconfont-heart-o'></i>
 				</Link>
 				<Link to='/cart' className='relative'>
 					<Badge value={cartItems.length}/>
-					<CartIcon/>
+					<i className='icon iconfont-cart'></i>
 				</Link>
-				<button onClick={() => setOpenMenu(prev => !prev)} className='lg:hidden'>
-					{openMenu ? <CloseMenuIcon className='fill-[#142033]'/> : <MenuIcon className='fill-[#142033]'/>}
+				<button onClick={() => setOpenMenu(prev => !prev)} className='lg:hidden text-black'>
+					{ openMenu ? <i className='icon iconfont-close'></i> : <i className='icon iconfont-menu'></i> }
 				</button>
 			</div>
 		</div>
@@ -74,8 +73,7 @@ export const HeaderCenter = () => {
 								className={classNames('px-5 w-full flex items-center justify-between uppercase font-bold group transition hover:text-blue-500', {'text-blue-500': filterIsOpen === 'tires'})}>
 					<span>{t('cartires')}</span>
 					<span className={classNames('transition', {'rotate-180': filterIsOpen === 'tires'})}>
-						<ChevronDownIcon
-							className={classNames('stroke-black transition group-hover:stroke-blue-500', {'stroke-blue-500': filterIsOpen === 'tires'})}/>
+						<i className='icon iconfont-chevron-down'></i>
 					</span>
 				</button>
 				{filterIsOpen === 'tires' &&
@@ -88,12 +86,11 @@ export const HeaderCenter = () => {
 				<button onClick={() => handleClick('disks')}
 								className={classNames('px-5 w-full flex items-center justify-between uppercase font-bold group transition hover:text-blue-500', {'text-blue-500': filterIsOpen === 'disks'})}>
 					<span>Автодиски</span>
-					<span className={classNames('transition', {'rotate-180': filterIsOpen === 'disks'})}>
-						<ChevronDownIcon
-							className={classNames('stroke-black transition group-hover:stroke-blue-500', {'stroke-blue-500': filterIsOpen === 'disks'})}/>
+					<span className={ classNames('transition', { 'rotate-180': filterIsOpen === 'disks' }) }>
+						<i className='icon iconfont-chevron-down'></i>
 					</span>
 				</button>
-				{filterIsOpen === 'disks' &&
+				{ filterIsOpen === 'disks' &&
 					<div className='mt-5 px-5 py-5 border-t border-[#E6E9EB] bg-[#FAFAFC] grid grid-cols-2'>
 						<CarDiskFilter closeFilter={ closeFilter } />
 					</div>

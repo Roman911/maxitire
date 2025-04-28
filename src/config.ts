@@ -44,7 +44,7 @@ export const config: Config = {
 		links: [
 			{ link: 'https://t.me', logo: 'telegram' },
 			{ link: 'https://www.facebook.com', logo: 'facebook' },
-			{ link: 'https://www.viber.com', logo: 'viber' },
+			{ link: 'https://www.instagram.com', logo: 'instagram' },
 		],
 	},
 	catalog: {

@@ -1,0 +1,29 @@
+.support {
+  background-image: image-set(
+                  url('../../../assets/home-support/bg-support_mob_3x.avif') 3x type('image/avif'),
+                  url('../../../assets/home-support/bg-support_mob_2x.avif') 2x type('image/avif'),
+                  url('../../../assets/home-support/bg-support_mob.avif') 1x type('image/avif'),
+                  url('../../../assets/home-support/bg-support_mob_3x.webp') 3x type('image/webp'),
+                  url('../../../assets/home-support/bg-support_mob_2x.webp') 2x type('image/webp'),
+                  url('../../../assets/home-support/bg-support_mob.webp') 1x type('image/webp'),
+                  url('../../../assets/home-support/bg-support_mob_3x.jpg') 3x type('image/jpeg'),
+                  url('../../../assets/home-support/bg-support_mob_2x.jpg') 2x type('image/jpeg'),
+                  url('../../../assets/home-support/bg-support_mob.jpg') 1x type('image/jpeg')
+  );
+
+  @media screen and (min-width: 768px) {
+    background-image: image-set(
+                    url('../../../assets/home-support/bg-support_3x.avif') 3x type('image/avif'),
+                    url('../../../assets/home-support/bg-support_2x.avif') 2x type('image/avif'),
+                    url('../../../assets/home-support/bg-support.avif') 1x type('image/avif'),
+                    url('../../../assets/home-support/bg-support_3x.webp') 3x type('image/webp'),
+                    url('../../../assets/home-support/bg-support_2x.webp') 2x type('image/webp'),
+                    url('../../../assets/home-support/bg-support.webp') 1x type('image/webp'),
+                    url('../../../assets/home-support/bg-support_3x.jpg') 3x type('image/jpeg'),
+                    url('../../../assets/home-support/bg-support_2x.jpg') 2x type('image/jpeg'),
+                    url('../../../assets/home-support/bg-support.jpg') 1x type('image/jpeg')
+    );
+  }
+
+  @apply bg-center bg-no-repeat bg-cover my-56 md:my-16 h-[724px] flex justify-between flex-col-reverse md:flex-row px-8 md:px-20 relative;
+}

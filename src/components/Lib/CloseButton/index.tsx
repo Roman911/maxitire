@@ -1,6 +1,4 @@
-import {FC, type MouseEventHandler} from 'react';
-
-import { CloseIcon } from '../Icons';
+import { FC, type MouseEventHandler } from 'react';
 
 interface CloseButtonProps {
 	handleClick: MouseEventHandler<HTMLDivElement | HTMLButtonElement>
@@ -9,10 +7,10 @@ interface CloseButtonProps {
 export const CloseButton: FC<CloseButtonProps> = ({ handleClick }) => {
 	return (
 		<button
-			className='absolute right-3 top-3'
+			className='absolute right-3 top-3 transition duration-150 ease-in text-gray-400 hover:text-gray-500'
 			onClick={ handleClick }
 		>
-			<CloseIcon className='transition duration-150 ease-in fill-gray-400 hover:fill-gray-500'/>
+			<i className='icon iconfont-close'></i>
 		</button>
 	)
 };

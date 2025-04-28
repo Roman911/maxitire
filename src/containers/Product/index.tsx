@@ -15,12 +15,11 @@ import { DeliveryCalculation } from '../Modals/DeliveryCalculation';
 import { OnlineInstallment } from '../../components/Modals';
 import { LayoutWrapper } from '../../components/Layout';
 import { ProductComponent } from '../../components/Product';
-import { Support } from '../Layout/Support';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Section } from '../../models/filter';
-import { FilterAlt } from '../Catalog/FilterAlt';
-import { OthersProducts } from '../../components/Product/OthersProduct';
-import {FilterBtn} from "../../components/Catalog/FilterByCar/FilterBtn";
+import { SimilarProducts } from './SimilarProducts';
+import { RecentlyViewed } from './RecentlyViewed';
+import { onAddToCart, onItemView } from '../../event';
 
 const cargo = ['3','4','5','6','9','10','11'];
 const scrollToTop = () => {
@@ -31,7 +30,6 @@ const scrollToTop = () => {
 };
 
 export const Product = () => {
-	const [ isOpenFilter, setOpenFilter ] = useState(false);
 	const [isModalActive, setModalActive] = useState(false);
 	const [offerId, setOfferId] = useState(0);
 	const [quantity, setQuantity] = useState(1);
@@ -50,10 +48,6 @@ export const Product = () => {
 		if (value) id.push(`${key}=${value}`);
 	};
 
-	useEffect(() => {
-		dispatch(changeSection(section));
-	}, [dispatch, section]);
-
 	if (section === Section.Disks) {
 		pushIfExists('width', data?.data.offer_group.width);
 		pushIfExists('radius', data?.data.offer_group.diameter);
@@ -63,6 +57,10 @@ export const Product = () => {
 		pushIfExists('height', data?.data.offer_group.height);
 		pushIfExists('radius', data?.data.offer_group.diameter);
 	}
+
+	useEffect(() => {
+		onItemView(data?.data, t(section, true));
+	}, [data?.data, section, t]);
 
 	useEffect(() => {
 		const storage = getFromStorage('reducerRecentlyViewed');
@@ -130,54 +128,50 @@ export const Product = () => {
 		setQuantity(numericValue < Number(offer?.quantity) ? numericValue : Number(offer?.quantity));
 	}
 
-
 	const onSubmit = () => {
+		onAddToCart(data?.data, t(section, true), quantity);
 		const cartStorage = getFromStorage('reducerCart');
 		const cart = [ ...cartStorage, { id: offerId, section: sectionNew, quantity }];
 		dispatch(addCart({ id: offerId, section: sectionNew, quantity }));
 		addToStorage('reducerCart', cart);
 	}
 
-	const closeFilter = () => {
-		setOpenFilter(false);
-	}
-
-	const openFilter = () => {
-		setOpenFilter(true);
-	}
-
 	return <div>
 		<Helmet>
-			<title>{data?.data.full_name}</title>
-			<meta name='description' content={data?.data.full_name}/>
+			<title>{ data?.data.full_name }</title>
+			<meta name='description' content={ data?.data.full_name } />
 		</Helmet>
-		<LayoutWrapper homePage={ true }>
-			<Breadcrumbs path={path}/>
-			<div className='py-5 lg:flex'>
-				<FilterBtn openFilter={ openFilter } title={ t('filters', true) } />
-				<FilterAlt isOpenFilter={ isOpenFilter } closeFilter={ closeFilter } isProduct={ true } />
-				<ProductComponent
-					data={data}
-					quantity={quantity}
-					handleModalOpen={handleModalOpen}
-					isLoading={isLoading}
-					offerId={offerId}
-					onChange={onChange}
-					handleClick={handleClick}
-					setQuantity={setQuantity}
-					onSubmit={onSubmit}
-					section={sectionNew}
-				/>
-			</div>
+		<LayoutWrapper>
+			<Breadcrumbs path={ path } />
+			<ProductComponent
+				data={ data }
+				quantity={ quantity }
+				handleModalOpen={ handleModalOpen }
+				isLoading={ isLoading }
+				offerId={ offerId }
+				onChange={ onChange }
+				handleClick={ handleClick }
+				setQuantity={ setQuantity }
+				onSubmit={ onSubmit }
+				section={ sectionNew }
+			/>
 		</LayoutWrapper>
-		<OthersProducts id={ id.join('&') } />
-		<Support />
+		<div className='container mx-auto'>
+			<SimilarProducts id={ id.join('&') } />
+			<RecentlyViewed />
+		</div>
 		{isModalActive && (
 			<Modal onClose={ handleModalClose } size={modalType === 'OnlineInstallment' ? 'max-w-6xl' : 'sm:max-w-lg'}>
 				{ modalType === 'QuickOrder' &&
-					<QuickOrder offerId={ offerId } quantity={ quantity } offerItem={ data?.data?.offers?.find(item => item.offer_id === offerId) } setModalActive={ setModalActive } />}
+					<QuickOrder
+						offerId={ offerId }
+						quantity={ quantity }
+						offerItem={ data?.data?.offers?.find(item => item.offer_id === offerId) }
+						setModalActive={ setModalActive }
+					/>}
 				{ modalType === 'OnlineInstallment' && <OnlineInstallment /> }
 				{ modalType === 'DeliveryCalculation' && <DeliveryCalculation offer_id={ data?.data.id } handleModalClose={ handleModalClose } /> }
+				{ modalType === 'OnlineInstallment' && <OnlineInstallment /> }
 				{ modalType === 'Callback' && <Callback productId={ data?.data?.offers?.find(item => item.offer_id === offerId)?.product_id } quantity={ quantity } /> }
 				{ modalType === 'AddAsk' && <AddAskModal productId={ data?.data?.offers?.find(item => item.offer_id === offerId)?.product_id } name={ data?.data.full_name } /> }
 			</Modal>

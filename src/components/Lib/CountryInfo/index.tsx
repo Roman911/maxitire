@@ -9,8 +9,8 @@ interface CountryInfoProps {
 
 export const CountryInfo: FC<CountryInfoProps> = ({ country, year, mobileHidden }) => {
 	return <p className='text-sm'>
-			<span className={twMerge(mobileHidden && 'hidden sm:inline')}>
-				{country}{country && year > 0 && ', '}
-			</span>{year > 0 && year}
+			<span className={ twMerge(mobileHidden && 'hidden sm:inline') }>
+				{ country }{ country && year > 0 && ', ' }
+			</span>{ year > 0 && year }
 	</p>
 };

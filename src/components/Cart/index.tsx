@@ -40,11 +40,13 @@ export const CartComponent: FC<CarProps> = ({ data, cartItems, removeProduct, se
 	});
 
 	const totalQuantity = items?.length;
-	const totalQuantityPrice = items?.reduce((sum, item) => sum + (item.quantity ?? 0) * parseFloat(item.price), 0);
+	const totalQuantityPrice =
+		items?.reduce((sum, item) =>
+			sum + (item.quantity ?? 0) * parseFloat(item.price), 0);
 
 	return <div className='flex flex-col lg:flex-row bg-white p-5 rounded-sm shadow-sm gap-10'>
 		<div className='flex-1 divide-y'>
-			{data?.data.products.map(item => {
+			{ data?.data.products.map(item => {
 				const quantity = cartItems?.find(i => i.id === item.best_offer.id)?.quantity || 1;
 
 				return <CartItem
@@ -63,7 +65,7 @@ export const CartComponent: FC<CarProps> = ({ data, cartItems, removeProduct, se
 					removeProduct={ removeProduct }
 					setQuantity={ setQuantity }
 				/>
-			})}
+			}) }
 		</div>
 		<div className='w-full lg:w-72 bg-blue-50 py-6 px-5 h-max'>
 			<div className='flex justify-between'>
@@ -89,4 +91,4 @@ export const CartComponent: FC<CarProps> = ({ data, cartItems, removeProduct, se
 			</Link>
 		</div>
 	</div>
-}
+};

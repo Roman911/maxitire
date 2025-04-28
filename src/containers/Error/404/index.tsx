@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../hooks';
 import { Language } from '../../../models/language';
 import { Link } from '../../../lib';
 
-import carWheel from '../../../assets/car-wheel.png';
+import carWheel from '../../../assets/car-wheel.webp';
 
 export const ErrorPage = () => {
 	const error = useRouteError();

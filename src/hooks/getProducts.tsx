@@ -4,7 +4,6 @@ import { removeFromStorage } from '../lib';
 import { useAppDispatch } from '../hooks';
 import { removeCart } from '../store/reducers/cartSlice';
 import { removeBookmarks } from '../store/reducers/bookmarksSlice';
-import { removeComparison } from '../store/reducers/comparisonSlice';
 import { Product } from '../models/products';
 
 interface ProductItem {
@@ -83,7 +82,7 @@ export const useAppGetProducts = (products: ProductItem[] = [], reducer: 'reduce
 				if(!dataTires.data?.products.find(item => byOffer ? item.best_offer.id === product : item.group)) {
 					if(reducer !== 'recentlyViewed') {
 						removeFromStorage(reducer, product);
-						dispatch(reducer === 'reducerCart' ? removeCart(product) : reducer === 'reducerBookmarks' ? removeBookmarks(product) : removeComparison(product));
+						dispatch(reducer === 'reducerCart' ? removeCart(product) : removeBookmarks(product));
 					}
 				}
 			})
@@ -94,7 +93,7 @@ export const useAppGetProducts = (products: ProductItem[] = [], reducer: 'reduce
 				if(!dataCargo.data?.products.find(item => byOffer ? item.best_offer.id === product : item.group)) {
 					if(reducer !== 'recentlyViewed') {
 						removeFromStorage(reducer, product);
-						dispatch(reducer === 'reducerCart' ? removeCart(product) : reducer === 'reducerBookmarks' ? removeBookmarks(product) : removeComparison(product));
+						dispatch(reducer === 'reducerCart' ? removeCart(product) : removeBookmarks(product));
 					}
 				}
 			})
@@ -105,7 +104,7 @@ export const useAppGetProducts = (products: ProductItem[] = [], reducer: 'reduce
 				if(!dataDisks.data?.products.find(item => byOffer ? item.best_offer.id === product : item.group)) {
 					if(reducer !== 'recentlyViewed') {
 						removeFromStorage(reducer, product);
-						dispatch(reducer === 'reducerCart' ? removeCart(product) : reducer === 'reducerBookmarks' ? removeBookmarks(product) : removeComparison(product));
+						dispatch(reducer === 'reducerCart' ? removeCart(product) : removeBookmarks(product));
 					}
 				}
 			})
@@ -116,7 +115,7 @@ export const useAppGetProducts = (products: ProductItem[] = [], reducer: 'reduce
 				if(!dataBattery.data?.products.find(item => byOffer ? item.best_offer.id === product : item.group)) {
 					if(reducer !== 'recentlyViewed') {
 						removeFromStorage(reducer, product);
-						dispatch(reducer === 'reducerCart' ? removeCart(product) : reducer === 'reducerBookmarks' ? removeBookmarks(product) : removeComparison(product));
+						dispatch(reducer === 'reducerCart' ? removeCart(product) : removeBookmarks(product));
 					}
 				}
 			})

@@ -7,7 +7,7 @@ interface Descriptions {
 	ru: DescriptionsItem
 }
 
-export interface AliasItem {
+interface AliasItem {
 	article_id: number
 	status: number
 	slug: string

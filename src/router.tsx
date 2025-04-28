@@ -6,7 +6,6 @@ import { Home } from './containers/Home';
 import { Catalog } from './containers/Catalog';
 import { Product } from './containers/Product';
 import { Bookmarks } from './containers/Bookmarks';
-import { Comparison } from './containers/Comparison';
 import { Cart } from './containers/Cart';
 import { Order } from './containers/Order';
 import { SuccessfulOrder } from './containers/SuccessfulOrder';
@@ -40,10 +39,6 @@ const router = createBrowserRouter([
 			{
 				path: ROUTES.bookmarks,
 				element: <Bookmarks />
-			},
-			{
-				path: ROUTES.comparison,
-				element: <Comparison />
 			},
 			{
 				path: ROUTES.cart,
